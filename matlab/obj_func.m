@@ -7,8 +7,8 @@ function [energy gradient] = obj_func( x, spring_num1, spring_num2, k1, k2)
 %       x(1:spring_num1): displacement of all springs from shape 1
 %       x(spring_num1+1:spring_num1+spring_num2): displacement of all springs 
 %                       from shape 2
-% spring_num1: The spring number from shape 1
-% spring_num2: The spring number from shape 2
+% spring_num1: The number of springs from shape 1
+% spring_num2: The number of springs from shape 2
 % k1: Spring coeficient of shape 1
 % k2: Spring coeficient of shape 2
 % 
