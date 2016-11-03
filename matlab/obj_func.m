@@ -1,12 +1,19 @@
-function [energy gradient] = obj_func( x )
-%OBJ_FUNC Summary of this function goes here
+function [energy gradient] = obj_func( x, spring_num1, spring_num2, k1, k2)
 % the objectve function calculates the sum of potential energy by the
-% formula E = 1/2kd^2 where d is the amound of deforming.
-%   Detailed explanation goes here
-   spring_num1 = 23;
-   spring_num2 = 20;
+% formula E = 1/2kd^2 where d is the diplacement of the string end.
+% input: 
+% x: A vector that contains the displacement of all spring ends. 
+%    The data are in the following order:
+%       x(1:spring_num1): displacement of all springs from shape 1
+%       x(spring_num1+1:spring_num1+spring_num2): displacement of all springs 
+%                       from shape 2
+% spring_num1: The spring number from shape 1
+% spring_num2: The spring number from shape 2
+% k1: Spring coeficient of shape 1
+% k2: Spring coeficient of shape 2
+% 
+   
    energy = 0;
-   k1 = 5; k2 = 10;
    index = 1;
    for i = 1:spring_num1
        energy = energy +1/2*k1*x(index)^2;
@@ -17,8 +24,8 @@ function [energy gradient] = obj_func( x )
        index =index+1;
    end
    
- 
-   energy
+%TODO: remove the output
+energy
 
 end
 
