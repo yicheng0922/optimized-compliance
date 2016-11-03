@@ -1,6 +1,6 @@
 function [energy gradient] = obj_func( x, spring_num1, spring_num2, k1, k2)
 % the objectve function calculates the sum of potential energy by the
-% formula E = 1/2kd^2 where d is the diplacement of the string end.
+% formula E = 1/2kd^2 where d is the diplacement of the spring end.
 % input: 
 % x: A vector that contains the displacement of all spring ends. 
 %    The data are in the following order:
@@ -12,7 +12,11 @@ function [energy gradient] = obj_func( x, spring_num1, spring_num2, k1, k2)
 % k1: Spring coeficient of shape 1
 % k2: Spring coeficient of shape 2
 % 
-   
+% output:
+% energy: the energy of the system
+% gradient: place holder required from the matlab function
+
+
    energy = 0;
    index = 1;
    for i = 1:spring_num1
