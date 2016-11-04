@@ -1,54 +1,56 @@
 function result_axis = find_axis_sector_box( sector, box ) 
-%find the vector that connects the center of the sector an the closest
-%vertex of the box to it.
-%input:
-%   sector : The shape data of the sector. Contains following member:
-%           x: the x coordinate of the center 
-%           y: the y coordinate of the center
-%   box ?The shape data of the box. Contains following members:
-%           x: the x coordinate of the top right corner
-%           y: the y coordinate of the top right corner
+% find the vector that connects the center of the sector an the closest
+% vertex of the box to it.
+% input:
+%   sector: The shape data of the sector (fan shape). Contains following member:
+%           x: the x coordinate of the center of the sector 
+%           y: the y coordinate of the center of the sector
+%   box: The shape data of the box. Contains following members:
+%           x: the x coordinate of the center of the box
+%           y: the y coordinate of the center of the box
 %           w: the width of the box
 %           h: the height of the box 
-%           d: the compression of the box (maybe this should detucted
-%               form w/h before passing into this function) 
 %           alpha: the orientation of the box    
-    %calculating vertex
+% output:
+%   result_axis: the edge vector    
+
+    % calculating vertex
     x = box.x;
     y = box.y;
     w = box.w;
     h = box.h;
-    d = box.d;
     alpha = box.alpha;
     
-    % this was a hot fix to the problem where width actually became the 
-    % length of the spring. Should be fixed later
-    xv=[0 h h 0 ];yv=[0 0 w+d w+d]; 
+    % setting up box vertices
+    vertices_x_box =[0.5*w 0.5*w -0.5*w -0.5*w];
+    vertices_y_box =[0.5*h -0.5*h -0.5*h 0.5*h]; 
 
+    % transforming vertex into world frame
+    % rotate the vertex by alpha
+    vertices_box = [vertices_x_box; vertices_y_box];
+    vertices_world =[cos(alpha) -sin(alpha);sin(alpha) cos(alpha)] * vertices_box;
+    % shift the vertex by (x,y)
+    vertices_world(1,:)= vertices_world(1,:)+x;
+    vertices_world(2,:)= vertices_world(2,:)+y;
     
-    %rotate angle alpha
-    R=[xv;yv];
-    vertex=[cos(alpha) -sin(alpha);sin(alpha) cos(alpha)]*R;
-    vertex(1,:)=vertex(1,:)+x;
-    vertex(2,:)=vertex(2,:)+y;
+    % get center of the sector (the fan shape)
+    sector_x = sector.x;
+    sector_y = sector.y;
     
-    sx = sector.x;
-    sy = sector.y;
-    
+    % find the vertex of the box that is closest to the 
     min_dist = realmax;
     min_i = 0;
-    for i=1:4
-       dist = norm([sx;sy]-vertex(:,i));
-       if(dist<min_dist)
+    [dim vertice_num] = size(vertices_world)
+    for i = 1:vertice_num
+       dist = norm([sector_x; sector_y] - vertices_world(:,i));
+       if(dist < min_dist)
            min_dist = dist;
            min_i = i;
        end
     end
     
-    result_axis = [sx;sy] - vertex(:,min_i);
+    % compute the result axis
+    result_axis = [sector_x; sector_y] - vertices_world(:,min_i);
     result_axis = result_axis';
-
-
-
 
 end
