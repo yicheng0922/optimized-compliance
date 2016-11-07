@@ -45,9 +45,7 @@ else
        vertices_world(:,4)=[x+radius*cos(axis_angle); y+radius*sin(axis_angle)];
     end
     
-    % Since the back of the line also needs to be checked, the oppoisite
-    % direction is checked
-    % 
+    % checks the opposite direction of the line 
     axis_angle = axis_angle - pi;
     if(axis_angle < 0)
         axis_angle = axis_angle + 2*pi;
