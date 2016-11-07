@@ -45,7 +45,12 @@ else
        vertices_world(:,4)=[x+radius*cos(axis_angle); y+radius*sin(axis_angle)];
     end
     
-    % checks the opposite direction of the line 
+    % checking if the orientation of the axis lies between the initial and
+    % the ending angle of the fan only checks half of the line since 
+    % it is actually just intersecting the ray starting from the center 
+    % with the arc. This means that we also need to check ray that is anti-parallel.
+    % to do this, pi is subtracted from the angle and the same test is
+    % performed again
     axis_angle = axis_angle - pi;
     if(axis_angle < 0)
         axis_angle = axis_angle + 2*pi;
