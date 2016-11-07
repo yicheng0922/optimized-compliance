@@ -1,4 +1,4 @@
-function result_vector = find_vector_sector_box( sector, box ) 
+function result_vector = find_closest_vector_sector_box( sector, box ) 
 % This function computes the vector from the center of the sector (fan 
 % shape) to the closest vertex of the box.
 % input:
