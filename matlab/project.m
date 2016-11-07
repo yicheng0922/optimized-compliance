@@ -1,6 +1,6 @@
 function [ min_dot, max_dot ] = project( shape, axis )
 % This function projects 'shape' onto the given axis.
-% When shape is a box (isRect = true), the vertex (EMD: which vertex) will be 
+% When shape is a box (isRect = true), all four vertices will be 
 % projected. 
 % when shape is a sector (isRect = false), the center, the end points of
 % the arc, and the intersection of the line through the center and parallel
@@ -12,24 +12,7 @@ vertices_world =[];
 % compute vertices that are going to be projected
 % Rectangle
 if(shape.isRect == true)
-     % calculate vertex
-    x = box.x;
-    y = box.y;
-    w = box.w;
-    h = box.h;
-    alpha = box.alpha;
-    
-    % setting up box vertices
-    vertices_x_box =[0.5*w 0.5*w -0.5*w -0.5*w];
-    vertices_y_box =[0.5*h -0.5*h -0.5*h 0.5*h]; 
-
-    % transforming vertices into world frame
-    % rotate the vertices by alpha
-    vertices_box = [vertices_x_box; vertices_y_box];
-    vertices_world =[cos(alpha) -sin(alpha);sin(alpha) cos(alpha)] * vertices_box;
-    % shift the vertices by (x,y)
-    vertices_world(1,:)= vertices_world(1,:)+x;
-    vertices_world(2,:)= vertices_world(2,:)+y;
+    vertices_world = compute_box_vertices(shape);
 else
     % getting information
     x = shape.x;
