@@ -25,7 +25,7 @@ else
     vertices_world = [x, x+radius*cos(alpha1), x+radius*cos(alpha2); y, y+radius*sin(alpha1), y+radius*sin(alpha2)];
     
     % check if the line parallel to axis and crossing the center intersescts
-    % the arc, if true, the intersection need to be added. This is done by
+    % the arc, if true, the intersection needs to be added. This is done by
     % checking if the axis is pointing to a direction between alpha1 and
     % alpha2
     axis_angle = atan2(axis(2)/axis(1));
