@@ -1,6 +1,13 @@
 function vertices_world = compute_box_vertices( box )
-%COMPUTE_BOX_VERTICES Summary of this function goes here
-%   Detailed explanation goes here
+% compute the coordinates of a given box
+% input:
+%   box: The shape data of the box. Contains following members:
+%           x: the x coordinate of the center of the box
+%           y: the y coordinate of the center of the box
+%           w: the width of the box
+%           h: the height of the box 
+%           alpha: the orientation of the box represented by a 2d angle in 
+%                   radians, measured counterclockwise from the x-axis 
 
     % calculate vertex
     x = box.x;
