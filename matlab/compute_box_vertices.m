@@ -6,7 +6,7 @@ function vertices_world = compute_box_vertices( box )
 %           y: the y coordinate of the center of the box
 %           w: the width of the box
 %           h: the height of the box 
-%           alpha: the orientation of the box represented by a 2d angle in 
+%           alpha: the 2d orientation of the box represented by an angle in 
 %                   radians, measured counterclockwise from the x-axis 
 
     % calculate vertex
@@ -16,7 +16,7 @@ function vertices_world = compute_box_vertices( box )
     h = box.h;
     alpha = box.alpha;
     
-    % setting up box vertices
+    % set up box vertices
     vertices_x_box =[0.5*w 0.5*w -0.5*w -0.5*w];
     vertices_y_box =[0.5*h -0.5*h -0.5*h 0.5*h]; 
 

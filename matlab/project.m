@@ -24,13 +24,13 @@ else
     % the center, and the two arc end
     vertices_world = [x, x+radius*cos(alpha1), x+radius*cos(alpha2); y, y+radius*sin(alpha1), y+radius*sin(alpha2)];
     
-    % check if the line parallel to axis and crosses the center intersescts
+    % check if the line parallel to axis and crossing the center intersescts
     % the arc, if true, the intersection need to be added. This is done by
     % checking if the axis is pointing to a direction between alpha1 and
     % alpha2
-    axis_angle = atan(axis(2)/axis(1));
+    axis_angle = atan2(axis(2)/axis(1));
     
-    % This is used to make sure that angle is within [0,2pi)
+    % This is used to wrap angle to [0,2pi)
     if(axis_angle < 0)
         axis_angle = axis_angle + 2*pi;
     end
@@ -38,12 +38,16 @@ else
     
     % the product will return negative if axis_angle is between alpha1 and
     % alpha2
+    % if this is true, it means the line parallel to axis and crossing the
+    % center intersects the arc. The intersection between the line and the
+    % arc is added to the list of vertices that needs to be projected
     if((alpha1-axis_angle)*(alpha2-axis_angle)<0)
        vertices_world(:,4)=[x+radius*cos(axis_angle); y+radius*sin(axis_angle)];
     end
     
-    % Since the back of the line also need to be checked, the oppoisite
+    % Since the back of the line also needs to be checked, the oppoisite
     % direction is checked
+    % 
     axis_angle = axis_angle - pi;
     if(axis_angle < 0)
         axis_angle = axis_angle + 2*pi;
@@ -59,7 +63,7 @@ min_dot = realmax;
 max_dot = -realmax;
 [vertex_num, dim] = size(vertices_world);
 for i = 1:vertex_num
-    value = axis*vertices_world(:,i);
+    value = dot(axis,vertices_world(:,i));
     if(value < min_dot)
       min_dot = value;
     end
