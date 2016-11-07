@@ -1,4 +1,4 @@
-% a objection function test where all springs are not compressed 
+% a objective function test where all springs are not compressed 
 
 % total spring numbers
 spring_num_total = 43;
@@ -17,7 +17,7 @@ assert(obj_func(X, spring_num_shape1, spring_num_shape2, k1, k2)==0);
 
 % a objection function test where all springs are compressed by 1
 compression = 2;
-X = ones(43,1)* -compression;
+X = ones(spring_num_total,1)* -compression;
 
 % total enery calculated based on the formula E=1/2kd^2 where k is the
 % spring constant and d is the displacement of the end of the spring.
