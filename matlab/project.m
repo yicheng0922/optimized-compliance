@@ -28,7 +28,7 @@ else
     % the arc, if true, the intersection needs to be added. This is done by
     % checking if the axis is pointing to a direction between alpha1 and
     % alpha2
-    axis_angle = atan2(axis(2)/axis(1));
+    axis_angle = atan2(axis(1),axis(2));
     
     % This is used to wrap angle to [0,2pi)
     if(axis_angle < 0)
@@ -51,6 +51,9 @@ else
     % with the arc. This means that we also need to check ray that is anti-parallel.
     % to do this, pi is subtracted from the angle and the same test is
     % performed again
+    % note: this is not overwriting the previous vaule since only one of
+    % the two if condition can be true as long as all the fan shape are
+    % convex ( |ending angle - initial angle| < pi| ). 
     axis_angle = axis_angle - pi;
     if(axis_angle < 0)
         axis_angle = axis_angle + 2*pi;
