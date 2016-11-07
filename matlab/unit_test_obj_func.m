@@ -16,8 +16,11 @@ X = zeros(spring_num_total,1);
 assert(obj_func(X, spring_num_shape1, spring_num_shape2, k1, k2)==0);
 
 % a objection function test where all springs are compressed by 1
-X = ones(43,1)*-1;
+compression = 2;
+X = ones(43,1)* -compression;
+
 % total enery calculated based on the formula E=1/2kd^2 where k is the
 % spring constant and d is the displacement of the end of the spring.
-energy = 1/2*20*5+1/2*23*10;
+energy = spring_num_shape1*1/2*k1*compression^2+ spring_num_shape2*1/2*k2*compression^2;
+
 assert(obj_func(X, spring_num_shape1, spring_num_shape2, k1, k2)==(energy));
