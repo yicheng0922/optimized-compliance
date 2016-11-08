@@ -28,7 +28,7 @@ else
     % the arc, if true, the intersection needs to be added. This is done by
     % checking if the axis is pointing to a direction between alpha1 and
     % alpha2
-    axis_angle = atan2(axis(1),axis(2));
+    axis_angle = atan2(axis(2),axis(1));
     
     % This is used to wrap angle to [0,2pi)
     if(axis_angle < 0)
@@ -51,9 +51,10 @@ else
     % with the arc. This means that we also need to check ray that is anti-parallel.
     % to do this, pi is subtracted from the angle and the same test is
     % performed again
-    % note: this is not overwriting the previous vaule since only one of
-    % the two if condition can be true as long as all the fan shape are
+    % note: this is not overwriting the previous value since only one of
+    % the two if conditions can be true as long as all the fan shapes are
     % convex ( |ending angle - initial angle| < pi| ). 
+    assert(size(vertices_world,1) < 4)
     axis_angle = axis_angle - pi;
     if(axis_angle < 0)
         axis_angle = axis_angle + 2*pi;
@@ -67,7 +68,7 @@ end
 % project by doing dot product and finding the minimum and maximum.
 min_dot = realmax;
 max_dot = -realmax;
-[vertex_num, dim] = size(vertices_world);
+[vertex_num] = size(vertices_world,2);
 for i = 1:vertex_num
     value = dot(axis,vertices_world(:,i));
     if(value < min_dot)
