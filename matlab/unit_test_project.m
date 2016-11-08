@@ -28,7 +28,7 @@ shape2.alpha1 = pi/4;    % starting angle
 shape2.alpha2 = 3*pi/4;  % ending angle
 shape2.isRect = false;   % this is not a box
 
-% this test for projecting a fan shape onto the axis (1,0) that does not intersect
+% this test is for projecting a fan shape onto the axis (1,0) that does not intersect
 % with the arc
 % the fan is centered at (0,0) with radius 2
 % the maximum dot product should be 4 which is dot((sqrt(2),sqrt(2)),(1,0)),
@@ -39,7 +39,7 @@ shape2.isRect = false;   % this is not a box
 [min max] = project(shape2, X_AXIS);
 assert(( abs(min - -sqrt(2)) <0.001 && abs(max - sqrt(2)) < 0.001 ))
 
-% this test for projecting a fan shape onto the axis (0,1) that does intersect
+% this test is for projecting a fan shape onto the axis (0,1) that does intersect
 % with the arc
 % the fan is centered at (0,0) with radius 2
 % the maximum dot product should be 4 which is dot((0,1),(0,1)),
@@ -49,7 +49,7 @@ assert(( abs(min - -sqrt(2)) <0.001 && abs(max - sqrt(2)) < 0.001 ))
 [min max] = project(shape2, Y_AXIS);
 assert((min == 0 && max == 2 ))
 
-% this test for projecting a fan shape onto the axis (0,-1) that does intersect
+% this test is for projecting a fan shape onto the axis (0,-1) that does intersect
 % with the arc on the other end 
 % the fan is centered at (0,0) with radius 2
 % the maximum dot product should be 4 which is dot((0,0),(0,-1)),

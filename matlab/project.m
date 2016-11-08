@@ -54,7 +54,7 @@ else
     % note: this is not overwriting the previous value since only one of
     % the two if conditions can be true as long as all the fan shapes are
     % convex ( |ending angle - initial angle| < pi| ). 
-    assert(size(vertices_world,1) < 4)
+    assert(size(vertices_world,2) < 4)
     axis_angle = axis_angle - pi;
     if(axis_angle < 0)
         axis_angle = axis_angle + 2*pi;
