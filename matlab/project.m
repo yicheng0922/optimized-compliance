@@ -54,12 +54,17 @@ else
     % note: this is not overwriting the previous value since only one of
     % the two if conditions can be true as long as all the fan shapes are
     % convex ( |ending angle - initial angle| < pi| ). 
-    assert(size(vertices_world,2) < 4)
+    % vertices_world
+
     axis_angle = axis_angle - pi;
     if(axis_angle < 0)
         axis_angle = axis_angle + 2*pi;
     end
     if((alpha1-axis_angle)*(alpha2-axis_angle)<0)
+       
+       % if the code reaches here, it means the original ray did not 
+       % intersect with the arc 
+       assert(size(vertices_world,2) <= 4)
        vertices_world(:,4)=[x+radius*cos(axis_angle); y+radius*sin(axis_angle)];
     end
     

@@ -116,7 +116,7 @@ for (i = 1:polyhedron2_edge_spring_num-1)
 end
 
 %printing out the sum just for checking.
-sum
+%sum
 ceq = sum;
 c=[];
 
