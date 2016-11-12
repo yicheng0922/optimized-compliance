@@ -1,9 +1,10 @@
 function [c ceq ] = con_func( x )
 
 % the constraint function. 
+% added 
 % This constraint is statisfied if ceq = 0
-% The function takes in the displacement of the ends of all springs. Based
-% on the input, the function generates shape data for each spring. There
+% The function takes in a vector (x) that contains the displacement of the ends of all springs. 
+% Based on the input, the function generates shape data for each spring. There
 % are two types of shapes are generated, a box if the spring is lying on an
 % edge, or a fan if the spring is lying on a vertex.
 % The function perform SAT test to find out the MTLD between every single
@@ -18,7 +19,14 @@ function [c ceq ] = con_func( x )
 SPRING_LENGTH = 4;
 
 % the hard coded configuration starts here 
+% a description of the configuration:
+% the configuration is set up so that one vertex of polyhedron 1 is pointing toward 
+% the edge of polyhedron 2. For simplicity reason, only the springs that are have a
+% possibility of colliding are considered, which are the springs from the two edges 
+% that form the vertex of polyhedron 1 and the edge from polyhedron2 that polyhedron 1
+% is pointing to.
 % spring number
+% 
 polyhedron1_edge1_spring_num = 10;
 polyhedron1_edge2_spring_num = 10;
 polyhedron1_vertex_spring_num = 3;
