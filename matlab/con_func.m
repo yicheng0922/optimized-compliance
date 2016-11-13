@@ -1,7 +1,6 @@
 function [c ceq ] = con_func( x )
 
 % the constraint function. 
-% added 
 % This constraint is statisfied if ceq = 0
 % The function takes in a vector (x) that contains the displacement of the ends of all springs. 
 % Based on the input, the function generates shape data for each spring. There
@@ -116,7 +115,7 @@ for (i = 1:polyhedron2_edge_spring_num-1)
 end
 
 %printing out the sum just for checking.
-%sum
+sum
 ceq = sum;
 c=[];
 

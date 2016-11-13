@@ -26,7 +26,9 @@ testEdges = [];
     
     
 % check for the extra edge required.
-% the edge will be the vector connecting the center, or the 
+% the edge will be the vector connecting the center if both shape are fan, or
+% the vector connect the center of the fan to the closest vertex of the box
+% no extra edges needs to be added if both are box
     if(shape1.isRect == false && shape2.isRect == false)
         
         edge = [shape1.x - shape2.x, shape1.y-shape2.y];
