@@ -18,72 +18,15 @@ testEdges = [];
 
 % find the axis that need to be tested
 % this content should really be wraped into a function, need to be updated.
-    shape = shape1;
-    if(shape.isRect == true)
-        
-        %box
-        %create rotation matrix
-        R = [cos(shape.alpha) -sin(shape.alpha);sin(shape.alpha) cos(shape.alpha)];
-        
-        %the first edge
-        edge = R*[0; shape.h];
-        edge = [-edge(2),edge(1)];
-        edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
+   testEdges = find_test_edge(shape1);
+   testEdges = [testEdges;find_test_edge(shape2)];
+    
+    
 
-        %the second edge
-        edge = R*[shape.w; 0];
-        edge = [-edge(2),edge(1)];
-        edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
-    else
-        %sector of circle
-
-        %find the radius, perhaps not needed?
-        radius = shape.radius;
-        
-        %edge1
-        edge = radius * [cos(shape.alpha1), sin(shape.alpha1)];
-        edge = [-edge(2),edge(1)];
-        edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
-        
-        %edge 2
-        edge = shape.radius * [cos(shape.alpha2), sin(shape.alpha2)];
-        edge = [-edge(2),edge(1)];
-        edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
-    end
     
     
-    % samething for shape 2
-    shape = shape2;
-    if(shape.isRect == true)
-        %box
-        R = [cos(shape.alpha) -sin(shape.alpha);sin(shape.alpha) cos(shape.alpha)];
-        edge = R*[0; shape.h];
-        edge = [-edge(2),edge(1)];
-        edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
-        edge = R*[shape.w; 0];
-        edge = [-edge(2),edge(1)];
-        edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
-    else
-        %sector of sphere
-        radius = shape.radius+shape.d;
-        edge = radius * [cos(shape.alpha1), sin(shape.alpha1)];
-        edge = [-edge(2),edge(1)];
-        edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
-        edge = radius * [cos(shape.alpha2), sin(shape.alpha2)];
-        edge = [-edge(2),edge(1)];
-        edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
-    end
-    
-    
-    % check for the extra edge
+% check for the extra edge required.
+% the edge will be the vector connecting the center, or the 
     if(shape1.isRect == false && shape2.isRect == false)
         
         edge = [shape1.x - shape2.x, shape1.y-shape2.y];
@@ -104,7 +47,7 @@ testEdges = [];
     
     end
     
-% start testing by projectiong
+% start testing by projection
     min_overlap = inf;
 
     test_edge_num = size(testEdges,1)
