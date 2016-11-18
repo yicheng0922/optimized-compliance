@@ -14,7 +14,6 @@ function result = SAT( shape1,shape2 )
 %   to the center if only one of them is a fan.
 %   EMD: Bjoern, we really need a picture describing what you are talking about
 
-testEdges = [];
 
 % find the axis that need to be tested
 % this content should really be wraped into a function, need to be updated.
@@ -52,7 +51,7 @@ testEdges = [];
 % start testing by projection
     min_overlap = inf;
 
-    test_edge_num = size(testEdges,1)
+    test_edge_num = size(testEdges,1);
     for i = 1:test_edge_num
 
         

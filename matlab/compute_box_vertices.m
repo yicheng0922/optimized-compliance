@@ -2,8 +2,10 @@ function vertices_world = compute_box_vertices( box )
 % compute the coordinates of a given box
 % input:
 %   box: The shape data of the box. Contains following members:
-%           x: the x coordinate of the center of the box
-%           y: the y coordinate of the center of the box
+%           x: the x coordinate of the mid point of bottom edge before rotation
+%               (see bottom_edge.png for a graphical explanation of bottom edge)
+%           y: the y coordinate of of the mid point of bottom edge before rotation
+%               (see bottom_edge.png for a graphical explanation of bottom edge)
 %           w: the width of the box
 %           h: the height of the box 
 %           alpha: the 2d orientation of the box represented by an angle in 
@@ -18,7 +20,7 @@ function vertices_world = compute_box_vertices( box )
     
     % set up box vertices
     vertices_x_box =[0.5*w 0.5*w -0.5*w -0.5*w];
-    vertices_y_box =[0.5*h -0.5*h -0.5*h 0.5*h]; 
+    vertices_y_box =[h 0 0 h]; 
 
     % transforming vertices into world frame
     % rotate the vertices by alpha
