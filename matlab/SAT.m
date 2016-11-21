@@ -9,15 +9,15 @@ function result = SAT( shape1,shape2 )
 %   If the shape is a sector of a circle, the normal of two 
 %   straight edges will be added.
 %   After these axes have been added, the program will then add the 
-%   the line connecting the centers if both of the shapes are sectors, or 
+%   the line connecting the centers if both of the shapes are fans, or 
 %   the line connecting the center to the vertex of the box that is closest
 %   to the center if only one of them is a fan.
-%   EMD: Bjoern, we really need a picture describing what you are talking about
+%   please see extra_edge_fan_fan.png and extra_edge_fan_box.png for a
+%   graphical explanation
 
 
 % find the axis that need to be tested
-% this content should really be wraped into a function, need to be updated.
-   testEdges = find_test_edge(shape1);
+% testEdges = find_test_edge(shape1);
    testEdges = [testEdges;find_test_edge(shape2)];
     
     
@@ -25,9 +25,9 @@ function result = SAT( shape1,shape2 )
     
     
 % check for the extra edge required.
-% the edge will be the vector connecting the center if both shape are fan, or
+% the edge will be the vector connecting the center if both shapes are fan, or
 % the vector connect the center of the fan to the closest vertex of the box
-% no extra edges needs to be added if both are box
+% no extra edges need to be added if both shapes are box
     if(shape1.isRect == false && shape2.isRect == false)
         
         edge = [shape1.x - shape2.x, shape1.y-shape2.y];

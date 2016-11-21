@@ -20,7 +20,7 @@ shape1.isRect = true;   % this is a box
 [min, max] = project(shape1, X_AXIS);
 assert((min==0 && max==4));
 
-% set up a sphere
+% set up a fan
 shape2.x = 0;            % x coordinate of the center of the fan
 shape2.y = 0;            % y coordinate of the center of the fan
 shape2.radius = 2;       % radius of the fan
