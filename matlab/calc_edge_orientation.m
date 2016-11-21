@@ -10,7 +10,10 @@ function edge_alpha = calc_edge_orientation( edge_x, edge_y )
 
 y_diff = edge_y(2) - edge_y(1);
 x_diff = edge_x(2) - edge_x(1);
-edge_alpha = atan2(y_diff, x_diff);
+
+% modulus operator is used to wrap edge_alpha to [0,2*pi)
+edge_alpha = mod(atan2(y_diff, x_diff),2*pi);
+
 
 end
 
