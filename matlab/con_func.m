@@ -4,7 +4,8 @@ function [c, ceq ] = con_func( x, box1_springs, box2_springs )
 % This constraint is statisfied if ceq = 0
 % The function takes in a vector (x) that contains the displacement of the
 % ends of all springs, and the uncompressed spring shape data (box1_springs
-% and box2_springs)
+% and box2_springs). The height of the shape data will be modified based on
+% x to get the shape data for the compressed springs
 
 
 % The function perform SAT test on every pair of springs.

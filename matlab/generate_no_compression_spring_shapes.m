@@ -40,7 +40,7 @@ for i = 1:vertex_num
     % linspace is used to generate a vector of equally spaced points
     % between the first and the second vertex of the current edge. The
     % intervals between two consecutive points represent the springs.
-    % Becaus there will be n-1 intervals between n points, we need to
+    % Because there will be n-1 intervals between n points, we need to
     % generate one extra point than the number of springs we want the edge
     % to have so that we get the correct number of intervals.
     splitted_x = linspace(cur_edge_x(1),cur_edge_x(2),edge_spring_numbers(i)+1);
