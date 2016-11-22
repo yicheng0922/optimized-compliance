@@ -14,14 +14,14 @@ vertices_world =[];
 if(shape.isRect == true)
     vertices_world = compute_box_vertices(shape);
 else
-    % getting information
+ 
     x = shape.x;
     y = shape.y;
     radius = shape.radius;
     alpha1 = shape.alpha1;
     alpha2 = shape.alpha2;
     
-    % the center, and the two arc end
+    % add the center and the two arc endpoints to the set of vertices
     vertices_world = [x, x+radius*cos(alpha1), x+radius*cos(alpha2); y, y+radius*sin(alpha1), y+radius*sin(alpha2)];
     
     % check if the line parallel to axis and crossing the center intersescts

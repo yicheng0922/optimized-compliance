@@ -10,19 +10,16 @@ function box_springs = generate_no_compression_spring_shapes( box_vertices_x, bo
 %                           be on every edge
 %       vertex_spring_numbers: A 1*4 array that holds how many springs
 %                              should be on every vertex
-%       spring_length: scaler representing the length of all springs
+%       spring_length: scalar representing the length of all springs
 
-vertex_num = length(box_vertices_x);
+vertex_num = size(box_vertices_x,2);
 box_springs = [];
 edge_alphas = [];
 
 % create edge springs
 for i = 1:vertex_num
     
-    % we find an edge by picking two consecutive vertices. The modulus
-    % operator is used to so that when i is the index of the last index,
-    % the function picks the first vertex instead of going out of bound.
-    
+    % we find an edge by picking two consecutive vertices.   
     % find the next index
     next_i = i+1;
     if(next_i > vertex_num)

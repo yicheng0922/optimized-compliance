@@ -3,7 +3,7 @@ function [c, ceq ] = con_func( x, box1_springs, box2_springs )
 % the constraint function. 
 % This constraint is statisfied if ceq = 0
 % The function takes in a vector (x) that contains the displacement of the
-% ends of all springs, and the uncompressed spring shape data( box1_springs
+% ends of all springs, and the uncompressed spring shape data (box1_springs
 % and box2_springs)
 
 

@@ -17,7 +17,7 @@ function result = SAT( shape1,shape2 )
 
 
 % find the axis that need to be tested
-% testEdges = find_test_edge(shape1);
+   testEdges = find_test_edge(shape1);
    testEdges = [testEdges;find_test_edge(shape2)];
     
     
@@ -26,7 +26,7 @@ function result = SAT( shape1,shape2 )
     
 % check for the extra edge required.
 % the edge will be the vector connecting the center if both shapes are fan, or
-% the vector connect the center of the fan to the closest vertex of the box
+% the vector connecting the center of the fan to the closest vertex of the box
 % no extra edges need to be added if both shapes are box
     if(shape1.isRect == false && shape2.isRect == false)
         
