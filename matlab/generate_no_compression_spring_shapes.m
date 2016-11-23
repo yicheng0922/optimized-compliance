@@ -1,6 +1,15 @@
 function box_springs = generate_no_compression_spring_shapes( box_vertices_x, box_vertices_y , edge_spring_numbers, vertex_spring_numbers, spring_length)
 %   This generates the shape information for the springs when there is no
 %   compression.
+%   
+%   This function is supposed to generate the configurations 
+%   that are not changing throughout the entire optimization process. 
+%   The optimization program first create the springs given the 
+%   polygon information and the spring length with this function.
+%   Then in the constraint function, the compression on every spring will 
+%   be pssed in and applied to the spring data. The modified data will be 
+%   then used for SAT tests.
+%
 %   The function takes the following inputs:
 %       box_vertices_x: A 1*4 array where every element is the x coordinate of
 %                      a vertex from the box. The vertices should be in ccw order
