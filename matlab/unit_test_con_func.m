@@ -17,7 +17,7 @@ box2_spring = generate_no_compression_spring_shapes( box2_vertices_x, box2_verti
 total_spring_num = sum(box1_edge_spring_num)+sum(box2_edge_spring_num)+sum(box1_vertex_spring_num)+sum(box2_vertex_spring_num);
 
 X = ones(total_spring_num,1)*-2;
-[c ceq] = con_func(X,box_spring1,box_spring2);
+[c ceq] = con_func(X,box1_spring,box2_spring);
 
 % the distance between the two boxes is 3. When the springs are
 % compressed by 2, the spring length of each box will be 1 which will make

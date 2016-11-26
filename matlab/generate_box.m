@@ -7,7 +7,7 @@ function shape = generate_box(spring_length, alpha, vertex1x, vertex1y, vertex2x
 % explanation)
 
     shape.h = spring_length;
-    shape.w = norm([vertex2x - vertex1x, vertex2y - vertex1y])
+    shape.w = norm([vertex2x - vertex1x, vertex2y - vertex1y]);
     shape.alpha = alpha;
     
     % shape.x and shape.y represents the center of the bottom edge

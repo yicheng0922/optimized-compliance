@@ -37,8 +37,8 @@ for i = 1:vertex_num
         next_i = 1; 
     end
     
-    cur_edge_x = box_vertices_x(i, next_i);
-    cur_edge_y = box_vertices_y(i, next_i);
+    cur_edge_x = box_vertices_x([i, next_i]);
+    cur_edge_y = box_vertices_y([i, next_i]);
     
     % calculate orientation of the edge with respect to x axis
     edge_alpha = calc_edge_orientation(cur_edge_x, cur_edge_y);
@@ -57,8 +57,8 @@ for i = 1:vertex_num
     
     % create shapes for edge springs
     for (ii = 1:edge_spring_numbers(i))
-        shape = generate_box(spring_length,edge_alpha, splitted_x(ii),splitted_x(ii+1),splitted_y(ii),splitted_y(ii+1));
-        box_springs= [boxsprings;{shape}];
+        shape = generate_box(spring_length,edge_alpha, splitted_x(ii),splitted_y(ii),splitted_x(ii+1),splitted_y(ii+1));
+        box_springs= [box_springs;{shape}];
     end
 end
 
@@ -79,8 +79,8 @@ for i=1:vertex_num
     end
     
     % the modulus operator is used to wrap the angle to [0,2pi)
-    voronoi_start_angle = mod(edge_alpha(start_i)+pi/2,2*pi);
-    voronoi_end_angle = mod(edge_alpha(i)+pi/2,2*pi);
+    voronoi_start_angle = mod(edge_alphas(start_i)+pi/2,2*pi);
+    voronoi_end_angle = mod(edge_alphas(i)+pi/2,2*pi);
     
     % split the angle into intervals, each interval represents a vertex
     % spring.
@@ -96,7 +96,7 @@ for i=1:vertex_num
         shape.alpha2 = splitted_angle(i+1);
         shape.radius = spring_length;
         shape.isRect = false;
-        box_springs= [boxsprings;{shape}];
+        box_springs= [box_springs;{shape}];
     end
     
 end

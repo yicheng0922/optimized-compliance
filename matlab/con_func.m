@@ -25,7 +25,7 @@ for i = 1:length(x)
         if(shape.isRect)
             shape.h = shape.h + x(i);
         else
-            shape.r = shape.r+ x(i);
+            shape.radius = shape.radius + x(i);
         end
         box1_springs{i} = shape;
     else
@@ -33,7 +33,7 @@ for i = 1:length(x)
         if(shape.isRect)
             shape.h = shape.h + x(i);
         else
-            shape.r = shape.r+ x(i);
+            shape.radius = shape.radius + x(i);
         end
         box2_springs{i-box1_spring_num} = shape;
     end
@@ -49,7 +49,8 @@ for i = 1:length(box1_springs)
     for ii = 1:length(box2_springs)
         
         shape2 = box2_springs{ii};
-        sum = sum + SAT(shape1,shape2);    
+        interpenetration = SAT(shape1,shape2);
+        sum = sum + interpenetration;    
     end
         
    

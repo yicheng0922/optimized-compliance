@@ -1,10 +1,10 @@
-function testEdges = find_test_axis( shape )
+function test_edges = find_test_axis( shape )
 
 % this function finds the axis that needs to be used for the SAT test based on shape data
 % if the shape is a box (shape.isRect == true), this will return the direction vectors of the axis that are perpendicular to the edges.
 % if the shape is a fan (shape.isRect == false), this will return the direction vectors of the axis that are perpendicular to two straight edges of the fan.
-
-
+ 
+ test_edges = [];
  if(shape.isRect == true)
         
         % the shape is a box
@@ -20,14 +20,14 @@ function testEdges = find_test_axis( shape )
         edge = edge/norm(edge);
         
         % add to the array
-        testEdges = [testEdges;edge];
+        test_edges = [test_edges;edge];
 
         % repeat the process with the second edge (the width)
         edge = R*[shape.w; 0];
 
         edge = [-edge(2),edge(1)];
         edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
+        test_edges = [test_edges;edge];
  else
         
         % the shape is a fan
@@ -42,12 +42,12 @@ function testEdges = find_test_axis( shape )
         edge = edge/norm(edge);
         
         % add to the array
-        testEdges = [testEdges;edge];
+        test_edges = [test_edges;edge];
         
         %  repeat the process with the second edge (the ending edge)
         edge = shape.radius * [cos(shape.alpha2), sin(shape.alpha2)];
         edge = [-edge(2),edge(1)];
         edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
+        test_edges = [test_edges;edge];
  end
 end

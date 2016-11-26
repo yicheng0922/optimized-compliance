@@ -28,8 +28,6 @@ function [energy gradient] = obj_func( x, spring_num1, spring_num2, k1, k2)
        index =index+1;
    end
    
-%TODO: remove the output
-energy
 
 end
 

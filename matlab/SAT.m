@@ -17,8 +17,8 @@ function result = SAT( shape1,shape2 )
 
 
 % find the axis that need to be tested
-   testEdges = find_test_edge(shape1);
-   testEdges = [testEdges;find_test_edge(shape2)];
+   test_edges = find_test_axis(shape1);
+   test_edges = [test_edges;find_test_axis(shape2)];
     
     
 
@@ -32,32 +32,32 @@ function result = SAT( shape1,shape2 )
         
         edge = [shape1.x - shape2.x, shape1.y-shape2.y];
         edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
+        test_edges = [test_edges;edge];
     
     elseif(shape1.isRect == false && shape2.isRect == true)
     
         edge = find_closest_vector_sector_box(shape1,shape2);
         edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
+        test_edges = [test_edges;edge];
    
     elseif(shape1.isRect == true && shape2.isRect == false)
     
         edge = find_closest_vector_sector_box(shape2,shape1);
         edge = edge/norm(edge);
-        testEdges = [testEdges;edge];
+        test_edges = [test_edges;edge];
     
     end
     
 % start testing by projection
     min_overlap = inf;
 
-    test_edge_num = size(testEdges,1);
+    test_edge_num = size(test_edges,1);
     for i = 1:test_edge_num
 
         
         % find the projection of the shapes
-        [min1,max1] = project(shape1,testEdges(i,:));
-        [min2,max2] = project(shape2,testEdges(i,:));
+        [min1,max1] = project(shape1,test_edges(i,:));
+        [min2,max2] = project(shape2,test_edges(i,:));
         
         % check how the two lies on the axis
         o1 = max1 - min2;
