@@ -16,39 +16,25 @@ function [c, ceq ] = con_func( x, box1_springs, box2_springs )
 
 % Modify the height of the shape based on the displacement of the spring
 box1_spring_num = length(box1_springs);
-for i = 1:length(x)
-    
-    % the first box1_spring_num elements in x will be the displacement of 
-    % springs in shape1
-    if( i <= box1_spring_num)
-        shape = box1_springs{i};
-        if(shape.isRect)
-            shape.h = shape.h + x(i);
-        else
-            shape.radius = shape.radius + x(i);
-        end
-        box1_springs{i} = shape;
-    else
-        shape = box2_springs{i-box1_spring_num};
-        if(shape.isRect)
-            shape.h = shape.h + x(i);
-        else
-            shape.radius = shape.radius + x(i);
-        end
-        box2_springs{i-box1_spring_num} = shape;
-    end
-end
+
+
+% Modify box1 springs
+modified_box1_springs = modify_spring_length(x(1:box1_spring_num), box1_springs);
+
+% Modify box2 springs
+modified_box2_springs = modify_spring_length(x(box1_spring_num+1:end), box2_springs);
+
 
 sum = 0;
 
 % perform SAT test with every pair of springs
-for i = 1:length(box1_springs)
+for i = 1:length(modified_box1_springs)
     
-    shape1 = box1_springs{i};
+    shape1 = modified_box1_springs{i};
     
-    for ii = 1:length(box2_springs)
+    for ii = 1:length(modified_box2_springs)
         
-        shape2 = box2_springs{ii};
+        shape2 = modified_box2_springs{ii};
         interpenetration = SAT(shape1,shape2);
         sum = sum + interpenetration;    
     end

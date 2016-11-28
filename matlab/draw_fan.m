@@ -1,4 +1,4 @@
-function [ output_args ] = draw_fan( shape, S )
+function draw_fan( shape, S )
 % this function draw the fan shape based on the shape data provided
 % S is the same character string used for plot(). Please see help plot for
 % detail explanation

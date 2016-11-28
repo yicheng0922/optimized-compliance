@@ -1,4 +1,4 @@
-function [ output_args ] = draw_box( shape, S )
+function draw_box( shape, S )
 % this function draws a box based on the shape data input
 % S is the same character string used for plot(). Please see help plot for
 % detail explanation

@@ -12,9 +12,9 @@ function box_springs = generate_no_compression_spring_shapes( box_vertices_x, bo
 %
 %   The function takes the following inputs:
 %       box_vertices_x: A 1*4 array where every element is the x coordinate of
-%                      a vertex from the box. The vertices should be in ccw order
+%                      a vertex from the box. The vertices should be in cw order
 %       box_vertices_y: A 1*4 array where every element is the y coordinate of
-%                      a vertex from the box. The vertices should be in ccw order
+%                      a vertex from the box. The vertices should be in cw order
 %       edge_spring_numbers: A 1*4 array that holds how many springs should
 %                           be on every edge
 %       vertex_spring_numbers: A 1*4 array that holds how many springs
@@ -79,8 +79,16 @@ for i=1:vertex_num
     end
     
     % the modulus operator is used to wrap the angle to [0,2pi)
-    voronoi_start_angle = mod(edge_alphas(start_i)+pi/2,2*pi);
-    voronoi_end_angle = mod(edge_alphas(i)+pi/2,2*pi);
+    voronoi_start_angle = mod(edge_alphas(start_i)+pi/2,2*pi)
+    voronoi_end_angle = mod(edge_alphas(i)+pi/2,2*pi)
+    
+    % edge case handling, if starting angle is smaller than the initial
+    % angle, it then means the angle got wrapped around. In order to
+    % generate the shapes with the correct angle, 2*pi needs to be add to
+    % the ending angle so that the voronoi region angle is computed correctly 
+    if(voronoi_start_angle < voronoi_end_angle)
+        voronoi_start_angle = voronoi_start_angle + 2*pi;
+    end
     
     % split the angle into intervals, each interval represents a vertex
     % spring.
@@ -92,8 +100,8 @@ for i=1:vertex_num
     shape.x = box_vertices_x(i);
     shape.y = box_vertices_y(i);
     for ii = 1:vertex_spring_numbers(i)
-        shape.alpha1 = splitted_angle(i);
-        shape.alpha2 = splitted_angle(i+1);
+        shape.alpha1 = splitted_angle(ii);
+        shape.alpha2 = splitted_angle(ii+1);
         shape.radius = spring_length;
         shape.isRect = false;
         box_springs= [box_springs;{shape}];
