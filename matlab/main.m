@@ -30,6 +30,6 @@ k2 = 5;
 ofn = @(x) obj_func(x, box1_spring_num, box2_spring_num, k1, k2);
 cfn = @(x) con_func(x, box1_spring, box2_spring);
 
-% compute the spring lengths (for forty-three springs in the example)
+% compute the spring lengths (for 80 springs in the example)
 X = fmincon(ofn, zeros(total_spring_num,1),[],[],[],[],[],[],cfn,options);
     
