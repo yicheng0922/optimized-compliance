@@ -23,11 +23,13 @@ box2_spring = generate_no_compression_spring_shapes( box2_vertices_x, box2_verti
 box1_spring_num = sum(box1_edge_spring_num)+sum(box1_vertex_spring_num);
 box2_spring_num = sum(box2_edge_spring_num)+sum(box2_vertex_spring_num);
 total_spring_num = box1_spring_num + box2_spring_num;
-box1_spring_k = 10;
-box2_spring_k = 5;
+k1 = 10;
+k2 = 5;
 
+% setup the objective and constraint functions
+ofn = @(x) obj_func(x, box1_spring_num, box2_spring_num, k1, k2);
+cfn = @(x) con_func(x, box1_spring, box2_spring);
 
-% compute the spring compression 
-X = fmincon(@(x) (obj_func(x, box1_spring_num, box2_spring_num, box1_spring_k,box2_spring_k)), zeros(total_spring_num,1)*0,[],[],[],[],[],[],@(x) con_func(x,box1_spring,box2_spring),options);
-
+% compute the spring lengths (for forty-three springs in the example)
+X = fmincon(ofn, zeros(total_spring_num,1),[],[],[],[],[],[],cfn,options);
     
