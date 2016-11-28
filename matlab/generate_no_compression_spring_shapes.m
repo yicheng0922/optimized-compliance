@@ -79,8 +79,8 @@ for i=1:vertex_num
     end
     
     % the modulus operator is used to wrap the angle to [0,2pi)
-    voronoi_start_angle = mod(edge_alphas(start_i)+pi/2,2*pi)
-    voronoi_end_angle = mod(edge_alphas(i)+pi/2,2*pi)
+    voronoi_start_angle = mod(edge_alphas(start_i)+pi/2,2*pi);
+    voronoi_end_angle = mod(edge_alphas(i)+pi/2,2*pi);
     
     % edge case handling, if starting angle is smaller than the initial
     % angle, it then means the angle got wrapped around. In order to

@@ -15,8 +15,8 @@ modified_box2_springs = modify_spring_length(x(box1_spring_num+1:end), box2_spri
 
 figure();
 hold on;
-draw_springs( box1_springs, 'r' );
-draw_springs( box2_springs, 'b' );
+draw_springs( modified_box1_springs, 'r' );
+draw_springs( modified_box2_springs, 'b' );
 hold off;
 
 end
