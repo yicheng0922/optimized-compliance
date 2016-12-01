@@ -33,13 +33,12 @@ for i = 1:length(modified_box1_springs)
     shape1 = modified_box1_springs{i};
     
     for ii = 1:length(modified_box2_springs)
-        
         shape2 = modified_box2_springs{ii};
         interpenetration = SAT(shape1,shape2);
         sum = sum + interpenetration;    
     end
         
-   
+
 end
 
 % prints out the sum just for checking.

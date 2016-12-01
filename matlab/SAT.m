@@ -79,6 +79,15 @@ function result = SAT( shape1,shape2 )
         end
     end
 
+    % if the two bodies are both boxes, we want to make sure the
+    % penetration depth on the direction of the box height is returned so
+    % another check is performed here
+    if(abs(min_overlap) <=0.0001)
+        spirng_edges = [spring_axis(shape1); spring_axis(shape2)];
+        
+    end
+    
+    
     
     result = min_overlap;
     
