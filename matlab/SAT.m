@@ -83,8 +83,35 @@ function result = SAT( shape1,shape2 )
     % penetration depth on the direction of the box height is returned so
     % another check is performed here
     if(abs(min_overlap) <=0.0001)
+        
         spirng_edges = [spring_axis(shape1); spring_axis(shape2)];
         
+        
+            % find the projection of the shapes
+            [min1,max1] = project(shape1,spring_edges(1,:));
+            [min2,max2] = project(shape2,spring_edges(1,:));
+        
+            % check how the two lies on the axis
+            o1 = max1 - min2;
+            o2 = max2 - min1;
+        
+            % because we already when throught the interpenetration test above
+            % and we know that there is no axis that can separate the two shape,
+            % the box should always interpenetrate, which means the two overlap 
+            % should both be larger than 0
+            assert(o1 > 0 && o2 > 0)
+            overlap1 = min(o1,o2);
+       
+            % same for the second edge 
+            [min1,max1] = project(shape1,spring_edges(2,:));
+            [min2,max2] = project(shape2,spring_edges(2,:));
+        
+            o1 = max1 - min2;
+            o2 = max2 - min1;
+       
+            assert(o1 > 0 && o2 > 0)
+            overlap2 = min(o1,o2);        
+            min_overlap = min(overlap1,overlap2);
     end
     
     
