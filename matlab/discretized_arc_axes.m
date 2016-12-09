@@ -1,7 +1,8 @@
 function arc_axis = discretized_arc_axes( fan, axis_number )
-    % this function generates the testing axis by discretizing the arc of
-    % the fan and find the normal of every segment.
-    % fan will be the shape data of the fan shape, and axis_number will be
+    % this function generates the testing axis for the Separating Axis 
+    % Theorem-based test by discretizing the arc of the fan and finds the 
+    % normal of every segment.
+    % fan is shape data of the fan shape, and axis_number is
     % the number of axis that want to be generated.
     
     start_angle = fan.alpha1;
@@ -20,7 +21,7 @@ function arc_axis = discretized_arc_axes( fan, axis_number )
     
     
     
-    % the normal will be negative reciprocal of the original vector
+    % the normal will be the negative reciprocal of the original vector
     arc_axis = [-y_difference; x_difference]';
     
     % normalize the axis
