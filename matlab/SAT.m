@@ -16,6 +16,8 @@ function result = SAT( shape1,shape2 )
 %   graphical explanation
 
 
+
+
 % find the axis that need to be tested
    test_edges = find_test_axis(shape1);
    test_edges = [test_edges;find_test_axis(shape2)];
@@ -82,9 +84,9 @@ function result = SAT( shape1,shape2 )
     % if the two bodies are both boxes, we want to make sure the
     % penetration depth on the direction of the box height is returned so
     % another check is performed here
-    if(abs(min_overlap) <=0.0001)
+    if(abs(min_overlap) > 0)
         
-        spirng_edges = [spring_axis(shape1); spring_axis(shape2)];
+        spring_edges = [spring_axis(shape1); spring_axis(shape2)];
         
         
             % find the projection of the shapes

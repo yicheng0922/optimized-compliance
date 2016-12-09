@@ -4,6 +4,9 @@ function test_edges = find_test_axis( shape )
 % if the shape is a box (shape.isRect == true), this will return the direction vectors of the axis that are perpendicular to the edges.
 % if the shape is a fan (shape.isRect == false), this will return the direction vectors of the axis that are perpendicular to two straight edges of the fan.
 
+% number of segment that a fan needs to be discretized to.
+FAN_DISCRETIZE_NUMBER = 100;
+
 test_edges = [];
 if(shape.isRect == true)
     
@@ -49,5 +52,9 @@ else
     edge = [-edge(2),edge(1)];
     edge = edge/norm(edge);
     test_edges = [test_edges;edge];
+    
+    % discretize the arc and find the test edges
+    arc_edges = discretized_arc_axes(shape,FAN_DISCRETIZE_NUMBER);
+    test_edges = [test_edges;arc_edges];
 end
 end

@@ -6,11 +6,7 @@ function draw_result( x, box1_springs, box2_springs )
 
 % Modify the height of the shape based on the displacement of the spring
 box1_spring_num = length(box1_springs);
-
-% Modify box1 springs
 modified_box1_springs = modify_spring_length(x(1:box1_spring_num), box1_springs);
-
-% Modify box2 springs
 modified_box2_springs = modify_spring_length(x(box1_spring_num+1:end), box2_springs);
 
 figure();

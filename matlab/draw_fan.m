@@ -6,7 +6,7 @@ function draw_fan( shape, S )
 % make sure the shape is a fan
 assert(~shape.isRect);
 
-% splitting the arc into 100 points
+% split the arc into 100 points
 t = linspace(shape.alpha1,shape.alpha2);
 xx = shape.x + shape.radius*cos(t);
 yy = shape.y + shape.radius*sin(t);
