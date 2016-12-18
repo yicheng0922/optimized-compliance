@@ -3,7 +3,7 @@
 
 % The X values are the amount of shape change that happens. A positive X
 % element will mean extension and a negative one will mean compression.
-options = optimoptions('fmincon','MaxFunEvals',50000, 'Display','iter');
+options = optimoptions('fmincon','MaxFunEvals',50000, 'Display','iter','Algorithm','active-set');
 
 % generate the polygon and the uncompressed spring shape data
 box1_vertices_x = [0,0,1,1];
@@ -30,6 +30,15 @@ k2 = 5;
 ofn = @(x) obj_func(x, box1_spring_num, box2_spring_num, k1, k2);
 cfn = @(x) con_func(x, box1_spring, box2_spring);
 
+% setup the initial point
+% because the distance between two boxes is 3, if we compress all springs
+% by -1.5, the configuration should be feasible
+initial_X = ones(total_spring_num,1)*-1.5;
+
+% uncomment the following line for a configuration close to being feasible
+% initial_X = initial_X + 0.1;
+
+
 % compute the spring lengths (for 80 springs in the example)
-X = fmincon(ofn, zeros(total_spring_num,1),[],[],[],[],[],[],cfn,options);
+X = fmincon(ofn, initial_X,[],[],[],[],[],[],cfn,options);
     

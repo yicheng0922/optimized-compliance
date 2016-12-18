@@ -17,7 +17,7 @@ function arc_axis = discretized_arc_axes( fan, axis_number )
     
     % calculate the difference between consecutive points
     y_difference = splitted_y(2:axis_number+1) - splitted_y(1:axis_number);
-    x_difference = splitted_x(2:axis_number+1) - spliited_x(1:axis_number);
+    x_difference = splitted_x(2:axis_number+1) - splitted_x(1:axis_number);
     
     
     
@@ -25,8 +25,8 @@ function arc_axis = discretized_arc_axes( fan, axis_number )
     arc_axis = [-y_difference; x_difference]';
     
     % normalize the axis
-    for i = 1:number_axis
-        arc_axis(:,i) = arc_axis(:,i)/norm(arc_axis(:,i));
+    for i = 1:axis_number
+        arc_axis(i,:) = arc_axis(i,:)/norm(arc_axis(i,:));
     end
 
 end
