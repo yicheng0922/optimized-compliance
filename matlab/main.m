@@ -3,7 +3,7 @@
 
 % The X values are the amount of shape change that happens. A positive X
 % element will mean extension and a negative one will mean compression.
-options = optimoptions('fmincon','MaxFunEvals',50000, 'Display','iter','Algorithm','active-set');
+options = optimoptions('fmincon','MaxFunEvals',50000, 'Display','iter');
 
 % generate the polygon and the uncompressed spring shape data
 box1_vertices_x = [0,0,1,1];
