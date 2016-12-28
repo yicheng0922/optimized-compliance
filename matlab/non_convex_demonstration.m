@@ -1,3 +1,8 @@
+% this program demonstrates the fact that the result produced by the optimal
+% set algorithm is not the optimal configuration which may imply the non-convextivity
+% of the optimization problem.
+
+
 % generate spring data
 box1_vertices_x = [0,0,1,1];
 box1_vertices_y = [0,1,1,0];
@@ -20,11 +25,13 @@ k1 = 10;
 k2 = 5;
 
 % this is the configuration that active set said as optimal and feasible
+% this is not optimal becasue the springs that are not in contact are also compressed
 X = ones(80,1)*-1.5;
 obj = obj_func(X, box1_spring_num, box2_spring_num, k1, k2);
 [c ceq] = con_func(X, box1_spring, box2_spring);
 
-% manually modify the configuration
+% manually modify the configuration, so that some of the springs that are not in contact
+% are no longer compressed
 X_modified = X;
 X_modified(1:5) = X_modified(1:5)+1.5;
 obj_mod = obj_func(X_modified, box1_spring_num, box2_spring_num, k1, k2);
